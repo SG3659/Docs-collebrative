@@ -7,34 +7,79 @@
    background-color: #F3F3F3;
    margin: 0;
  }
- 
+
+.nav-container{
+  /* background-color: aqua; */
+  position: sticky;
+  
+}
+.gallery{
+  margin: 0px;
+  position: sticky;
+  display: flex;
+  flex-wrap: wrap;
+  background:white;
+}
+.gallery img {
+  margin: 7px 0px 4px 8px;
+  width: 55px;
+  height: 58px;
+  padding: 8px;
+}
+.gallery :hover {
+  border: 0px solid #777;
+  cursor: pointer;
+}
+.text{
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  padding: auto;
+}
+.text h1{
+  margin: 0px;
+  font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
+.text ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  font-family: "Google Sans", Roboto, sans-serif;
+  gap: 12px;
+}
+
  .container .ql-editor {
    width: 8.5in;
    min-height: 11in;
    padding: 1in;
    margin: 5rem;
    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
-   background-color: white;
+   
  }
  
  .container .ql-container.ql-snow {
    border: none;
    display: flex;
    justify-content: center;
+   background-color: #F3F3F3;
  }
  
  .container .ql-toolbar.ql-snow {
-
    display: flex;
    justify-content: center;
    position: sticky;
-   
+   margin:6px 16px 8px 16px ;
+   min-height: 40px;
+   padding:  8px 0px 8px;
+   border-radius: 24px; 
    top:0;
    z-index: 1;
-   background-color: #F3F3F3;
    border: none;
-   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
-   background-color: #edf2fa;
+   background-color: rgb(237, 242, 250);
  }
  
  
@@ -58,6 +103,9 @@
  
    .container .ql-toolbar.ql-snow {
      display: none;
+   }
+   .nav-container{
+    display: none;
    }
  }
  @media screen {
