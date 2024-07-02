@@ -56,7 +56,7 @@ export default function TextEditor() {
 
   //socket connection
   useEffect(() => {
-    const s = io("http://localhost:5000");
+    const s = io("http://localhost:8000");
     setSocket(s);
     return () => {
       s.disconnect();

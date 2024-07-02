@@ -1,8 +1,23 @@
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 8000;
+const { createServer } = require("http");
+const server = createServer(app);
+const { Server } = require("socket.io");
+
+const cors = require("cors");
+
 const Document = require("./Model/Document");
 require("dotenv").config();
 require("./config/data").connect();
 
-const io = require("socket.io")(5000, {
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
+
+const io = new Server(server, {
   cors: {
     origin: "http://localhost:5173",
     methods: ["GET", "POST"],
@@ -34,3 +49,7 @@ async function findOrCreateDocument(id) {
   if (document) return document;
   return await Document.create({ _id: id, data: defaultValue });
 }
+
+server.listen(port, (req, res) => {
+  console.log(`server running at http://localhost:${port}`);
+});
