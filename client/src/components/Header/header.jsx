@@ -1,5 +1,7 @@
 import React from "react";
-
+import { SiStreamlabs } from "react-icons/si";
+import { SiGooglemeet } from "react-icons/si";
+import { RiChatNewLine } from "react-icons/ri";
 const header = () => {
   return (
     <nav className="nav-container">
@@ -30,14 +32,15 @@ const header = () => {
         <div className="text">
           <h1>Docs</h1>
           <ul className="text-tab">
-            <li>File</li>
-            <li>Edit</li>
-            <li> View</li>
-            <li>Insert</li>
-            <li> Format</li>
-            <li> Tools</li>
-            <li>Extension</li>
-            <li>Help</li>
+            <li>
+              <RiChatNewLine/>
+            </li>
+            <li>
+              <SiGooglemeet />
+            </li>
+            <li>
+              <SiStreamlabs/>
+            </li>
           </ul>
         </div>
       </div>
