@@ -2,6 +2,7 @@ import React from "react";
 import { SiStreamlabs } from "react-icons/si";
 import { SiGooglemeet } from "react-icons/si";
 import { RiChatNewLine } from "react-icons/ri";
+import { NavLink } from "react-router-dom";
 const header = () => {
   return (
     <nav className="nav-container">
@@ -33,13 +34,13 @@ const header = () => {
           <h1>Docs</h1>
           <ul className="text-tab">
             <li>
-              <RiChatNewLine/>
+              <RiChatNewLine onClick={() => {}} />
             </li>
             <li>
               <SiGooglemeet />
             </li>
             <li>
-              <SiStreamlabs/>
+              <SiStreamlabs />
             </li>
           </ul>
         </div>

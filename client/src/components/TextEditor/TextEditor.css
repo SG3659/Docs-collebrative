@@ -1,0 +1,12 @@
+.main{
+   padding: 10px;
+   display: flex;
+   flex-direction: row;
+   gap: 10px;
+}
+.sidebar{
+   width: 50vh;
+   height: 50vh;
+   /* background-color: brown; */
+   border: 1px solid;
+}

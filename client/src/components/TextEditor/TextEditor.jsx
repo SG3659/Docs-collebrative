@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-
+import "./TextEditor.css";
 import { io } from "socket.io-client";
 
 import { useParams } from "react-router-dom";
@@ -115,5 +115,14 @@ export default function TextEditor() {
     };
   }, [quill, socket]);
 
-  return <div className="container" ref={wrapperRef}></div>;
+  return (
+    <div className="main">
+      <div className="sidebar">
+        
+      </div>
+      <div className="editor">
+        <div className="container" ref={wrapperRef}></div>
+      </div>
+    </div>
+  );
 }
