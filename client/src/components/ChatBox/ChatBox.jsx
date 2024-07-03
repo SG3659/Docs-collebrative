@@ -1,7 +1,10 @@
-import React from 'react'
+import { useEffect } from "react";
+import { io } from "socket.io-client";
 
-export const ChatBox = () => {
+export default function ChatBox() {
   return (
-    <div>ChatBox</div>
-  )
+    <div>
+      <p>Working on it ....</p>
+    </div>
+  );
 }
