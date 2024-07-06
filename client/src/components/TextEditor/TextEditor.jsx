@@ -7,7 +7,7 @@ import { io } from "socket.io-client";
 import { SiStreamlabs } from "react-icons/si";
 import { SiGooglemeet } from "react-icons/si";
 import { RiChatNewLine } from "react-icons/ri";
-
+import Header from "../Header/header";
 import { useParams } from "react-router-dom";
 const toolbarOptions = [
   ["bold", "italic", "underline", "strike"], // toggled buttons
@@ -122,26 +122,29 @@ export default function TextEditor() {
   }, [quill, socket]);
 
   return (
-    <div className="main">
-      <div className="sidebar">
-        <div className="collebrative">
-          <div className="chat">
-            <RiChatNewLine />
-          </div>
-          <div className="stream">
+    <>
+      <Header />
+      <div className="main">
+        <div className="sidebar">
+          <div className="collebrative">
+            <div className="chat">
+              <RiChatNewLine />
+            </div>
+            {/* <div className="stream">
             <SiStreamlabs />
           </div>
           <div className="meet">
             <SiGooglemeet />
+          </div> */}
+          </div>
+          <div>
+            <ChatBox />
           </div>
         </div>
-        <div>
-          <ChatBox />
+        <div className="editor">
+          <div className="container" ref={wrapperRef}></div>
         </div>
       </div>
-      <div className="editor">
-        <div className="container" ref={wrapperRef}></div>
-      </div>
-    </div>
+    </>
   );
 }

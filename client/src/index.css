@@ -1,5 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-*, *::before, *::after {
+/* *, *::before, *::after {
    box-sizing: border-box;
  }
  
@@ -9,11 +12,11 @@
  }
 
 .nav-container{
-  /* background-color: aqua; */
+   background-color: aqua; 
   position: sticky;
   
-}
-.gallery{
+}*/
+/*.gallery{
   margin: 0px;
   position: sticky;
   display: flex;
@@ -50,9 +53,9 @@
   font-size: 14px;
   font-family: "Google Sans", Roboto, sans-serif;
   gap: 10px;
-}
+} */
 
- .container .ql-editor {
+ /* .container .ql-editor {
    width: 8.5in;
    min-height: 11in;
    padding: 1in;
@@ -110,5 +113,5 @@
  }
  @media screen {
   
- }
+ } */
  

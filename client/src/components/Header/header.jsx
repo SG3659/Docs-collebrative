@@ -1,10 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
+import "./header.css";
 const header = () => {
+  const navigate = useNavigate();
   return (
     <nav className="nav-container">
       <div className="gallery">
+       
+
         <img
+          onClick={() => navigate("/")}
           src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxEQEBAQDw8QEBAPEhAPEBAPDQ8PEBAQFREYFhUSEx
          MYHSggGBolGxUVITEhJSkrLi4uFyAzODMsNygtLisBCgoKDg0OGhAQGy4lHSUtKy0tLSsrNy0tListListLS03KzU3LS0tMi0tKystLy0tL
          S0tLS0tLSstKy0rLS0tLf/AABEIAOEA4QMBEQACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABwIDBAUGAQj/xABHEAABAgIDCgkKBgED

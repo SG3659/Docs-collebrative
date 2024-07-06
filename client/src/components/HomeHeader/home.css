@@ -1,0 +1,34 @@
+.home-container{
+   background-color: white;
+   box-shadow: 8px;
+   display: flex;
+   align-items:center;
+   padding-left: 10px;
+}
+.sidemenu{
+   width: fit-content;
+   border-radius: 100%;
+   height: fit-content;
+   padding: 10px;
+   
+}
+.sidemenu:hover{
+   background:#e8e9eb;
+   cursor: pointer;
+}
+.home-nav{
+   margin: 0px;
+   display: flex;
+   align-items: center;
+}
+.home-nav img{
+   margin: 7px 0px 4px 8px;
+   width: 55px;
+   height: 58px;
+   padding: 8px;
+}
+.home-nav h1{
+   font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+   font-weight: lighter;
+   font-size: x-large;
+}
