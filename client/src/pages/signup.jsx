@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 const signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -13,8 +16,27 @@ const signup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
+    try {
+      const response = await axios.post(
+        "/api/auth/register",
+        JSON.stringify(formData),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.data.success) {
+        toast.success(response.data.message);
+        navigate("/login");
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error("something went wrong ", error);
+    }
   };
   return (
     <div className="p-3 max-w-lg mx-auto mt-40">

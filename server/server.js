@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 5000;
 const { createServer } = require("http");
 const server = createServer(app);
+const cookieparser = require("cookie-parser");
 const { Server } = require("socket.io");
 
 const cors = require("cors");
@@ -10,6 +11,8 @@ const cors = require("cors");
 const Document = require("./Model/Document");
 require("dotenv").config();
 require("./config/data").connect();
+const userauth = require("./routes/authRoute");
+app.use(express.json());
 
 app.use(
   cors({
@@ -41,6 +44,9 @@ io.on("connection", (socket) => {
       await Document.findByIdAndUpdate(documentId, { data });
     });
   });
+  socket.on("sendMessage", (message) => {
+    io.emit("message", message);
+  });
 });
 
 async function findOrCreateDocument(id) {
@@ -49,6 +55,8 @@ async function findOrCreateDocument(id) {
   if (document) return document;
   return await Document.create({ _id: id, data: defaultValue });
 }
+app.use(cookieparser());
+app.use("/api/auth", userauth);
 
 server.listen(port, (req, res) => {
   console.log(`server running at http://localhost:${port}`);
