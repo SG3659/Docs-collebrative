@@ -30,6 +30,8 @@ const login = () => {
         }
       );
       if (response.data.success) {
+        // console.log(response.data);
+        localStorage.setItem("token", response.data.data);
         toast.success(response.data.message);
         navigate("/");
       } else {

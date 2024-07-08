@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/HomeHeader/HomeHeader";
 import Card from "../components/Card/Card";
-import Menu from"../components/HomeMenu/SideBar"
+import Menu from "../components/HomeMenu/SideBar";
+import axios from "axios";
 const home = () => {
+  const getdata = async () => {
+    try {
+      //  give a response
+      const response = await axios.post(
+        "/api/auth/get-user-info-by-id",
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      // console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getdata();
+  }, []);
   return (
     <>
       <div className="w-screen h-screen relative ">

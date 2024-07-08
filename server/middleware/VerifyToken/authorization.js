@@ -1,19 +1,26 @@
+const jwt = require("jsonwebtoken");
+
 const VerifyToken = async (req, res, next) => {
-   try {
-     const token = req.cookies.token;
-     if (!token) {
-       return res.status(401).json({ message: "Unauthorized"});
-     }
-     const user = await User.findByToken(token);
-     if (!user) {
-       return res.status(401).json({ message: "Unauthorized"});
-     }
- 
-     req.user = user;
-     next();
-   } catch (err) {
-     res.status(500).json({ message: err.message });
-   }
- };
- 
- module.exports = VerifyToken;
+  try {
+    const token = req.headers["authorization"].split(" ")[1];
+    jwt.verify(token, process.env.JWT_PASSWORD, (err, decoded) => {
+      if (err) {
+        return res.status(401).json({
+          success: false,
+          message: "Auth failed",
+        });
+      } else {
+        // decode token payload and assign
+        req.body.userId = decoded._id;
+        next();
+      }
+    });
+  } catch (error) {
+    return res.status(401).json({
+      success: false,
+      message: "Unvalid token key pass  ",
+    });
+  }
+};
+
+module.exports = VerifyToken;

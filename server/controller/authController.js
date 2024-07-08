@@ -15,6 +15,7 @@ const CreateUser = async (req, res) => {
       email,
       password,
     });
+    // console.log(user);
     return res.json({
       success: true,
       message: "user create successfully",
@@ -46,15 +47,19 @@ const Login = async (req, res) => {
 
     const token = user.generateAuthToken();
     await user.incrementLoginCount();
-    res.cookie("token", token, {
-      httpOnly: true,
-      sameSite: "strict",
-      secure: false,
-    });
-    res.json({
-      success: true,
-      message: "Login Success",
-    });
+    const { password: pass, ...rest } = user._doc;
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+        sameSite: "strict",
+        secure: false,
+      })
+      .json({
+        success: true,
+        message: "Login Success",
+        data: token,
+        ...rest,
+      });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
@@ -63,4 +68,28 @@ const Login = async (req, res) => {
     });
   }
 };
-module.exports = { CreateUser, Login };
+const UserData = async (req, res) => {
+  const user = await User.findOne({ _id: req.body.userId });
+  user.password = undefined;
+  try {
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "user not exists",
+      });
+    } else {
+      return res.json({
+        success: true,
+        data: user,
+        message: "user exists",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+module.exports = { CreateUser, Login, UserData };
