@@ -18,9 +18,9 @@
 
 .main{
    padding: var(--padding);
-   display: flex;
+   /* display: flex;
    flex-direction: row;
-   gap: 10px;
+   gap: 10px; */
 }
 .sidebar{
    margin: 7px 0px 4px 8px;

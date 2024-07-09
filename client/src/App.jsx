@@ -4,21 +4,50 @@ import { v4 as uuidV4 } from "uuid";
 import Home from "../src/pages/home";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
-
-
+import PublicRoute from "./components/PRoutes/publicRoutes";
+import PrivateRoute from "./components/PRoutes/protectedRoute";
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/Signup" element={<Signup />} />
-
         <Route
-          path="/docs"
-          element={<Navigate to={`/document/${uuidV4()}`} />}
+          path="/"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
         />
-        <Route path="/document/:id" element={<TextEditor />} />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/Signup"
+          element={
+            <PublicRoute>
+              <Signup />
+            </PublicRoute>
+          }
+        />
+        <Route path="/">
+          <Route
+            path="docs"
+            element={<Navigate to={`/document/${uuidV4()}`} />}
+          />
+          <Route
+            path="document/:id"
+            element={
+              <PrivateRoute>
+                <TextEditor />
+              </PrivateRoute>
+            }
+          />
+        </Route>
       </Routes>
     </>
   );

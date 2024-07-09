@@ -125,7 +125,7 @@ export default function TextEditor() {
     <>
       <Header />
       <div className="main">
-        <div className="sidebar">
+        {/* <div className="sidebar">
           <div className="collebrative">
             <div className="chat">
               <RiChatNewLine />
@@ -136,11 +136,11 @@ export default function TextEditor() {
           <div className="meet">
             <SiGooglemeet />
           </div> */}
-          </div>
+        {/*</div>
           <div>
             <ChatBox />
           </div>
-        </div>
+        </div> */}
         <div className="editor">
           <div className="container" ref={wrapperRef}></div>
         </div>
