@@ -1,6 +1,7 @@
 # Docs-web Collaborative 
 Developed a MERN Stack Docs collebrative application using Socket.io. The Docs allows on-the-fly styling of writting tools. Also supports additional functionalities like image sharing, etc. 
 ## Current Functionality:
+    -> Full fledge  website
     ->  Collaborative Text Editor.
     ->  Image Upload 
     ->  Collab URL Vedio
@@ -11,10 +12,7 @@ Developed a MERN Stack Docs collebrative application using Socket.io. The Docs a
     ->  Code
     
 ## Future Functionality:
-    -> Full fledge  website
     -> Live Chat
-    -> Live Vedio using websockets
-    -> Stream
     -> Power Point. Excel, Form
     -> AI chatbot
  
