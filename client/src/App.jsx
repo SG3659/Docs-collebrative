@@ -6,9 +6,13 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 import PublicRoute from "./components/PRoutes/publicRoutes";
 import PrivateRoute from "./components/PRoutes/protectedRoute";
+import { useSelector } from "react-redux";
+import Spinner from "./components/Spinner/Spinner";
 function App() {
+  const { loading } = useSelector((state) => state.loader);
   return (
-    <>
+    <div className="relative">
+      <div className="absolute">{loading && <Spinner />}</div>
       <Routes>
         <Route
           path="/"
@@ -49,7 +53,7 @@ function App() {
           />
         </Route>
       </Routes>
-    </>
+    </div>
   );
 }
 
