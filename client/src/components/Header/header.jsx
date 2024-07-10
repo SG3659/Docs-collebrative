@@ -7,8 +7,6 @@ const header = () => {
   return (
     <nav className="nav-container">
       <div className="gallery">
-       
-
         <img
           onClick={() => navigate("/")}
           src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxEQEBAQDw8QEBAPEhAPEBAPDQ8PEBAQFREYFhUSEx

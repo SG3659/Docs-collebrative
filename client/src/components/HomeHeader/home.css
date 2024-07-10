@@ -20,6 +20,7 @@
    margin: 0px;
    display: flex;
    align-items: center;
+   
 }
 .home-nav img{
    margin: 7px 0px 4px 8px;
@@ -31,4 +32,21 @@
    font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
    font-weight: lighter;
    font-size: x-large;
+}
+.profile-setting{
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   padding: 4px;
+}
+.profile-setting:hover {
+   border: 0.5px solid;
+   border-radius: 30%;
+   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.profile-setting img{
+   width: 35px;
+   height: 34px;
+   border-radius: 50px;
+  
 }
