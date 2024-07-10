@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import "./home.css";
 import { useSelector } from "react-redux";
+import SideBar from "../HomeMenu/SideBar";
 
 const HomeHeader = () => {
   const { user } = useSelector((state) => state.user);
@@ -9,6 +10,7 @@ const HomeHeader = () => {
     <nav className="home-container">
       <div className="sidemenu">
         <IoMdMenu fontSize={25} />
+        {/* <SideBar /> */}
       </div>
       <div className="home-nav">
         <img
