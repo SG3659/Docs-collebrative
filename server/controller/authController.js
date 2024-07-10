@@ -89,7 +89,11 @@ const UserData = async (req, res) => {
     } else {
       return res.json({
         success: true,
-        data: user,
+        data: {
+          name: user.username,
+          email: user.email,
+          photo: user.profileImageURL,
+        },
         message: "user exists",
       });
     }

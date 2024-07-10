@@ -6,15 +6,6 @@
 }
 
 
-*, *::before, *::after {
-   box-sizing: border-box;
- }
- 
- body {
-   background-color: white;
-   margin: 0;
- }
-
 
 .main{
    padding: var(--padding);
