@@ -10,7 +10,7 @@
    border-radius: 100%;
    height: fit-content;
    padding: 10px;
-   
+   position: relative;
 }
 .sidemenu:hover{
    background:#e8e9eb;

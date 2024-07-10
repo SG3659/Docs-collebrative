@@ -26,7 +26,7 @@ const home = () => {
   // }, []);
   return (
     <>
-      <div className="w-screen h-screen relative ">
+      <div className="w-screen h-screen">
         {/* <Menu /> */}
         <Header />
         <div className=" bg-gray-200 w-full h-80 ">
