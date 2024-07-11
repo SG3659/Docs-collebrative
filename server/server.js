@@ -55,7 +55,6 @@ async function findOrCreateDocument(id) {
   if (document) return document;
   return await Document.create({ _id: id, data: defaultValue });
 }
-app.use('/image', express.static(path.join(__dirname, 'image')));
 app.use(cookieparser());
 app.use("/api/auth", userauth);
 
