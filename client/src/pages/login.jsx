@@ -93,6 +93,11 @@ const login = () => {
           <span className="text-blue-700">Register</span>
         </Link>
       </div>
+      <div>
+        <Link to="/forgot-password">
+          <p>Forgot Password</p>
+        </Link>
+      </div>
     </div>
   );
 };

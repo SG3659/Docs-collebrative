@@ -8,6 +8,10 @@ import PublicRoute from "./components/PRoutes/publicRoutes";
 import PrivateRoute from "./components/PRoutes/protectedRoute";
 import { useSelector } from "react-redux";
 import Spinner from "./components/Spinner/Spinner";
+import ForgotPassword from "./pages/ForgotPassword";
+import PasswordResetSuccess from "./pages/PasswordResetSuccess";
+import EmailSent from "./pages/EmailSent";
+import UpdatePassword from "./pages/UpdatePassword";
 function App() {
   const { loading } = useSelector((state) => state.loader);
   return (
@@ -35,6 +39,38 @@ function App() {
           element={
             <PublicRoute>
               <Signup />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/password-reset-success"
+          element={
+            <PublicRoute>
+              <PasswordResetSuccess />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/email-sent"
+          element={
+            <PublicRoute>
+              <EmailSent />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/reset-password/:userId/:resetString"
+          element={
+            <PublicRoute>
+              <UpdatePassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/forgot-password"
+          element={
+            <PublicRoute>
+              <ForgotPassword />
             </PublicRoute>
           }
         />
