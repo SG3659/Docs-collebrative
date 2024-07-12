@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "../components/HomeHeader/HomeHeader";
 import Card from "../components/Card/Card";
-import Menu from "../components/HomeMenu/SideBar";
+
 import axios from "axios";
 const home = () => {
   // const getdata = async () => {
@@ -26,9 +26,7 @@ const home = () => {
   // }, []);
   return (
     <>
-      <div className="w-screen h-screen">
-        {/* <Menu /> */}
-        <Header />
+      <Header>
         <div className=" bg-gray-200 w-full h-80 ">
           <div className="p-4">
             <div className="w-fit font-sans">
@@ -37,7 +35,7 @@ const home = () => {
           </div>
           <Card />
         </div>
-      </div>
+      </Header>
     </>
   );
 };
