@@ -236,6 +236,7 @@ const ResetPassword = async (req, res) => {
       });
   };
 };
+// update password
 const UpdatePassword = async (req, res) => {
   let { userId, resetString } = req.params;
   let { newPassword } = req.body;
