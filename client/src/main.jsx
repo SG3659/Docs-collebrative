@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Provider store={store}>
         <App />
       </Provider>
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-rigth" reverseOrder={false} />
     </BrowserRouter>
   </React.StrictMode>
 );

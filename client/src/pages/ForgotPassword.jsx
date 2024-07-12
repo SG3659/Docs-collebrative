@@ -50,15 +50,21 @@ const ForgotPassword = () => {
                 Enter your email address and we'll send you a link to reset your
                 password.
               </p>
-              <form onSubmit={submitHandler}>
+              <form onSubmit={submitHandler} className="flex flex-col gap-1">
                 <input
+                  className="border p-3 rounded-full focus:outline-none shadow-lg "
                   type="email"
                   placeholder="Enter the email"
                   name="email"
                   value={formData.email}
                   onChange={changeHandler}
                 />
-                <button>Send Reset Code</button>
+                <button className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-bold rounded-full group">
+                  <span className=" text-white group-hover:text-black">
+                    Send Reset Email
+                  </span>
+                  <span className="absolute inset-0 border-2 border-blue-600 rounded-full"></span>
+                </button>
               </form>
             </div>
           </div>
