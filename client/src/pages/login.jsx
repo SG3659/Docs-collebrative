@@ -49,7 +49,7 @@ const login = () => {
   return (
     <div className="from-gray-50 to-blue-500 bg-gradient-to-r h-screen  ">
       <div className="p-3 max-w-lg mx-auto shadow-2xl rounded-xl  ">
-        <h1 className="text-3xl my-7 text-center text-white text-4xl font-bold rounded-lg">
+        <h1 className=" my-7 text-center text-white text-4xl font-bold ">
           Log-In
         </h1>
         <form onSubmit={submitHandler} className="flex flex-col gap-3  ">
@@ -91,12 +91,12 @@ const login = () => {
         <div className="mt-5 flex gap-2">
           <p className="">Don't Have an account?</p>
           <Link to="/signup">
-            <span className="text-black hover:text-white">Register</span>
+            <span className="text-blue-700 hover:text-white">Register</span>
           </Link>
         </div>
         <div>
           <Link to="/forgot-password">
-            <p className="text-black hover:text-white">Forgot Password</p>
+            <p className="text-blue-700 hover:text-white">Forgot Password</p>
           </Link>
         </div>
       </div>
