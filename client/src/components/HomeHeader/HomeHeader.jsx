@@ -4,9 +4,10 @@ import "./home.css";
 import { useSelector } from "react-redux";
 import SideBar from "../HomeMenu/SideBar";
 
-const HomeHeader = () => {
+const HomeHeader = ({children}) => {
   const { user } = useSelector((state) => state.user);
   return (
+  <>  
     <nav className="home-container">
       <div className="sidemenu">
         <IoMdMenu fontSize={25} />
@@ -43,6 +44,8 @@ const HomeHeader = () => {
         <p>{user?.name}</p>
       </div>
     </nav>
+    <div>{children}</div>
+  </>  
   );
 };
 
