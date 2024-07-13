@@ -130,11 +130,11 @@ const UserData = async (req, res) => {
   }
 };
 
-// create reset password api 
+// create reset password api
 const ResetPassword = async (req, res) => {
   const { email } = req.body;
   const name = User.username;
-  const redirectUrl = "http://localhost:5713/reset-password";
+  const redirectUrl = "http://localhost:5173/reset-password";
   // check if email exists
   User.find({ email })
     .then((data) => {

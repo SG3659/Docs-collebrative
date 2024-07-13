@@ -20,7 +20,7 @@ const ForgotPassword = () => {
         "/api/auth/requestPasswordReset",
         formData
       );
-      console.log(response.data);
+      // console.log(response.data);
       if (response.data.success) {
         toast.success("Email Sent Successfully Please Check Your Email");
         localStorage.setItem("email", formData.email);
