@@ -1,13 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 import toast from "react-hot-toast";
 const UpdatePassword = () => {
   const [formData, setFormData] = useState({
     newPassword: "",
-    confirmPassword: "",
   });
   const navigate = useNavigate();
+  
   function changeHandler(e) {
     setFormData({
       ...formData,
@@ -26,7 +27,7 @@ const UpdatePassword = () => {
     try {
       const response = await axios.post(
         `/api/auth/resetPassword/${userId}/${resetString}`,
-        JSON.stringify("newPassword")
+        formData
       );
       if (response.data.success) {
         toast.success("Password Has Updated Successfully");
@@ -38,23 +39,36 @@ const UpdatePassword = () => {
     }
   };
   return (
-    <form onSubmit={submitHandler}>
-      <input
-        type="password"
-        placeholder="New Password"
-        name="newPassword"
-        onChange={changeHandler}
-        value={formData.newPassword}
-      />
-      <input
-        type="password"
-        placeholder="Confirm Password"
-        name="confirmPassword"
-        onChange={changeHandler}
-        value={formData.confirmPassword}
-      />
-      <button>Submit</button>
-    </form>
+    <div className="from-gray-50 to-blue-500 bg-gradient-to-r h-screen flex w-full lg:w-full justify-center items-center space-y-8">
+      <div className=" px-8 md:px-32 lg:px-24  h-72 shadow-2xl rounded-xl">
+        <h1 className="mb-8 text-5xl text-center font-bold italic mt-1">
+          Reset Password
+        </h1>
+        <form onSubmit={submitHandler} className="flex flex-col gap-1">
+          <input
+            className="border p-3 rounded-full focus:outline-none shadow-lg "
+            type="password"
+            placeholder="New Password"
+            name="newPassword"
+            onChange={changeHandler}
+            value={formData.newPassword}
+          />
+          <input
+            className="border p-3 rounded-full focus:outline-none shadow-lg "
+            type="password"
+            placeholder="Confirm Password"
+            name="confirmPassword"
+            onChange={changeHandler}
+            value={formData.confirmPassword}
+          />
+          <p className="text-white"> min 8 cha. & contain special Character</p>
+          <button className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-bold rounded-full group">
+            <span className=" text-white group-hover:text-black">Submit</span>
+            <span className="absolute inset-0 border-2 border-blue-600 rounded-full"></span>
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 
