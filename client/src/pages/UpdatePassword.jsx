@@ -61,7 +61,7 @@ const UpdatePassword = () => {
             onChange={changeHandler}
             value={formData.confirmPassword}
           />
-          <p className="text-white"> min 8 cha. & contain special Character</p>
+          <p className="text-white text-center"> min 8 cha. & contain special Character</p>
           <button className="relative inline-flex items-center justify-center px-10 py-3 overflow-hidden font-bold rounded-full group">
             <span className=" text-white group-hover:text-black">Submit</span>
             <span className="absolute inset-0 border-2 border-blue-600 rounded-full"></span>
