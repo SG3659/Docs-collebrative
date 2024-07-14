@@ -9,44 +9,8 @@
 
 .main{
    padding: var(--padding);
-   /* display: flex;
-   flex-direction: row;
-   gap: 10px; */
-}
-.sidebar{
-   margin: 7px 0px 4px 8px;
-   padding: var(--padding);
-   width: 50vh;
-   height: 50vh;
-   background-color: rgb(237, 242, 250);
-   border-radius: 20px;
-   position: static;
-   box-shadow:var(--box-shadow);
-}
+   margin-top: 50px;
 
-.collebrative {
-   margin-top: 3px;
-   padding: var(--padding);
-   display: flex;
-   justify-content: center;
-   gap: 20px;
-   box-shadow: var(--box-shadow);
-   border-radius: 20px;
-   background-color:white;
-}
-
-.chat :hover{
-   cursor:var(--cursor);
-   box-shadow: var(--box-shadow);
-}
-
-.stream :hover{
-   cursor: var(--cursor);
-   box-shadow: var(--box-shadow);
-}
-.meet:hover{
-   cursor: var(--cursor);
-   box-shadow: var(--box-shadow);
 }
 
 .container .ql-editor {

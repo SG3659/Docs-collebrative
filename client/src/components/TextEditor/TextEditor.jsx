@@ -4,9 +4,6 @@ import "quill/dist/quill.snow.css";
 import "./TextEditor.css";
 import { io } from "socket.io-client";
 
-import { SiStreamlabs } from "react-icons/si";
-import { SiGooglemeet } from "react-icons/si";
-import { RiChatNewLine } from "react-icons/ri";
 import Header from "../EditorHeader/header";
 import { useParams } from "react-router-dom";
 const toolbarOptions = [
@@ -29,7 +26,6 @@ const toolbarOptions = [
   ["clean"], // remove formatting button
 ];
 
-import ChatBox from "../ChatBox/ChatBox";
 export default function TextEditor() {
   const { id: documentId } = useParams();
   const [socket, setSocket] = useState();
@@ -125,22 +121,6 @@ export default function TextEditor() {
     <>
       <Header>
         <div className="main">
-          {/* <div className="sidebar">
-          <div className="collebrative">
-            <div className="chat">
-              <RiChatNewLine />
-            </div>
-            {/* <div className="stream">
-            <SiStreamlabs />
-          </div>
-          <div className="meet">
-            <SiGooglemeet />
-          </div> */}
-          {/*</div>
-          <div>
-            <ChatBox />
-          </div>
-        </div> */}
           <div className="editor">
             <div className="container" ref={wrapperRef}></div>
           </div>
