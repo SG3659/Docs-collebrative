@@ -15,7 +15,7 @@ import UpdatePassword from "./pages/UpdatePassword";
 function App() {
   const { loading } = useSelector((state) => state.loader);
   return (
-    <div className="relative ">
+    <div className="relative z-0 ">
       <div className="absolute">{loading && <Spinner />}</div>
       <Routes>
         <Route

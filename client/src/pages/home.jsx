@@ -27,7 +27,7 @@ const home = () => {
   return (
     <>
       <Header>
-        <div className=" bg-gray-200 w-full h-80 mt-20 rounded-2xl shadow-2xl ">
+        <div className=" bg-gray-100 w-full h-80 mt-20 rounded-2xl shadow-2xl ">
           <div className="p-4">
             <div className="w-fit font-google">
               <p className="font">Start a new document </p>
