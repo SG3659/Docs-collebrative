@@ -10,7 +10,8 @@
 .main{
    padding: var(--padding);
    margin-top: 50px;
-
+   display: flex;
+   justify-content: center;
 }
 
 .container .ql-editor {
