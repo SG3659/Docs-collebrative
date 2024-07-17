@@ -1,15 +1,18 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Header from "../components/HomeHeader/HomeHeader";
 import Card from "../components/Card/Card";
 
+// import { useParams } from "react-router-dom";
+
 import axios from "axios";
 const home = () => {
+  // const params = useParams();
   // const getdata = async () => {
   //   try {
   //     //  give a response
-  //     const response = await axios.post(
-  //       "/api/auth/get-user-info-by-id",
-  //       {},
+  //     const response = await axios.get(
+  //       "/api/docs/getAllDocs",
+  //       { userId: params.id },
   //       {
   //         headers: {
   //           Authorization: "Bearer " + localStorage.getItem("token"),
