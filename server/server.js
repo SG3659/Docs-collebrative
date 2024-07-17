@@ -12,6 +12,7 @@ const Document = require("./Model/Document");
 require("dotenv").config();
 require("./config/data").connect();
 const userauth = require("./routes/authRoute");
+const docsauth = require("./routes/docsRoute");
 app.use(express.json());
 
 app.use(
@@ -57,6 +58,7 @@ async function findOrCreateDocument(id) {
 }
 app.use(cookieparser());
 app.use("/api/auth", userauth);
+app.use("/api/docs", docsauth);
 
 server.listen(port, (req, res) => {
   console.log(`server running at http://localhost:${port}`);
