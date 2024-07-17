@@ -9,6 +9,7 @@ const header = ({ children }) => {
         <div>
           <img
           className="w-8 h-10 cursor-pointer "
+          
             onClick={() => navigate("/")}
             src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxEQEBAQDw8QEBAPEhAPEBAPDQ8PEBAQFREYFhUSEx
          MYHSggGBolGxUVITEhJSkrLi4uFyAzODMsNygtLisBCgoKDg0OGhAQGy4lHSUtKy0tLSsrNy0tListListLS03KzU3LS0tMi0tKystLy0tL

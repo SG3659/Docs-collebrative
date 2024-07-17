@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import Header from "../components/HomeHeader/HomeHeader";
 import Card from "../components/Card/Card";
-
+import DataTable from "../components/HomeHeader/Datatable";
 // import { useParams } from "react-router-dom";
 
 import axios from "axios";
 const home = () => {
-  // const params = useParams();
   // const getdata = async () => {
   //   try {
   //     //  give a response
@@ -30,13 +29,16 @@ const home = () => {
   return (
     <>
       <Header>
-        <div className=" bg-gray-100 w-full h-80 mt-20 rounded-2xl shadow-2xl ">
+        <div className=" bg-gray-100 w-50% h-80 mt-20 rounded-2xl shadow-2xl ">
           <div className="p-4">
             <div className="w-fit font-google">
               <p className="font">Start a new document </p>
             </div>
           </div>
           <Card />
+        </div>
+        <div className=" mt-10 flex flex-wrap justify-center gap-20 p-3 ">
+          <DataTable />
         </div>
       </Header>
     </>
