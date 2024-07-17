@@ -4,6 +4,10 @@ const userDocument = new Schema(
     _id: {
       type: String,
     },
+    name: {
+      type: String,
+      default: "Untitled Document",
+    },
     data: {
       type: Object,
     },
