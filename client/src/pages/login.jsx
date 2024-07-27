@@ -47,9 +47,15 @@ const login = () => {
     }
   };
   return (
-    <div className="from-gray-50 to-blue-500 bg-gradient-to-r h-screen  ">
-      <div className="p-3 max-w-lg mx-auto shadow-2xl rounded-xl  ">
-        <h1 className=" my-7 text-center text-white text-4xl font-bold ">
+    <div className="from-gray-50 to-blue-500 bg-gradient-to-r h-screen flex justify-center items-center">
+      <div >
+        <img
+          className="w-96 rounded-full shadow-2xl"
+          src="https://static.vecteezy.com/system/resources/previews/013/939/288/non_2x/online-account-registration-and-login-concept-woman-who-registers-or-logs-in-to-an-online-account-with-a-user-interface-secure-login-and-password-flat-illustration-vector.jpg"
+        />
+      </div>
+      <div className="w-[550px] p-3">
+        <h1 className=" my-7 text-center  text-6xl font-bold italic underline">
           Log-In
         </h1>
         <form onSubmit={submitHandler} className="flex flex-col gap-3  ">
@@ -82,7 +88,7 @@ const login = () => {
             </span>
           </label>
           <button
-            className="border  p-3 rounded-full  text-white hover:opacity-95
+            className="border  p-3 rounded-full  text-white hover:opacity-100
         disabled:opacity-80"
           >
             Login

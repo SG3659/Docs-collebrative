@@ -9,7 +9,7 @@
 
 .main{
    padding: var(--padding);
-   margin-top: 50px;
+   margin-top: 90px;
    display: flex;
    justify-content: center;
 }

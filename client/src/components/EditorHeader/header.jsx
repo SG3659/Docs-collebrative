@@ -5,7 +5,7 @@ const header = ({ children }) => {
   const navigate = useNavigate();
   return (
     <>
-      <nav className="flex item-center  p-2 w-full z-20 fixed top-0  bg-white gap-1 ">
+      <nav className="flex item-center  p-2 w-full z-20 fixed top-0  bg-white gap-1 shadow-2xl">
         <div>
           <img
           className="w-8 h-10 cursor-pointer "

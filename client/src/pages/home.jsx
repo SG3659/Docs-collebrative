@@ -37,7 +37,7 @@ const home = () => {
           </div>
           <Card />
         </div>
-        <div className=" mt-10 flex flex-wrap justify-center gap-20 p-3 ">
+        <div className=" mt-10 p-3 flex justify-center ">
           <DataTable />
         </div>
       </Header>

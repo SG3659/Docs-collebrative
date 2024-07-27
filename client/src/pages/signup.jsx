@@ -45,9 +45,15 @@ const signup = () => {
     }
   };
   return (
-    <div className="from-gray-50 to-blue-500 bg-gradient-to-r h-screen  ">
-      <div className="p-3 max-w-lg mx-auto shadow-2xl rounded-xl">
-        <h1 className="my-7 text-center text-white text-4xl font-bold">
+    <div className="from-gray-50 to-blue-500 bg-gradient-to-r h-screen flex justify-center items-center   ">
+      <div>
+        <img
+          className="w-96 rounded-full shadow-2xl"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7XFscFmsekCqCW66VDEvMUIfJBubsDxNSeA&s"
+        />
+      </div>
+      <div className="w-[550px] p-3">
+        <h1 className="my-7 text-center  text-6xl font-bold italic underline ">
           Sign-Up
         </h1>
         <form onSubmit={submitHandler} className="flex flex-col gap-3 ">
