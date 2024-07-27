@@ -30,7 +30,7 @@ const Datatable = () => {
     getData();
   });
   return (
-    <>
+    <div className="w-[999px] flex flex-wrap justify-center gap-10 p-6 bg-gray-200 rounded-lg shadow-2xl">
       {docs && docs.length > 0
         ? docs.map((row, rowIndex) => (
             <div
@@ -44,7 +44,7 @@ const Datatable = () => {
             </div>
           ))
         : "CREATE NEW DATA"}
-    </>
+    </div>
   );
 };
 
