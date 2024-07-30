@@ -29,7 +29,7 @@ const home = () => {
   return (
     <>
       <Header>
-        <div className=" bg-gray-100 w-50% h-80 mt-20 rounded-2xl shadow-2xl ">
+        <div className=" bg-gray-50 w-50% h-80 mt-20 rounded-2xl shadow-2xl ">
           <div className="p-4">
             <div className="w-fit font-google">
               <p className="font">Start a new document </p>
@@ -37,7 +37,7 @@ const home = () => {
           </div>
           <Card />
         </div>
-        <div className=" mt-10 p-3 flex justify-center ">
+        <div className=" bg-gray-50 mt-10 p-3 flex justify-center rounded-2xl shadow-2xl ">
           <DataTable />
         </div>
       </Header>
