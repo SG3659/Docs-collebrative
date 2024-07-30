@@ -6,6 +6,7 @@ import { io } from "socket.io-client";
 
 import Header from "../EditorHeader/header";
 import { useParams } from "react-router-dom";
+
 const toolbarOptions = [
   ["bold", "italic", "underline", "strike"], // toggled buttons
   ["blockquote", "code-block"],
@@ -26,7 +27,9 @@ const toolbarOptions = [
   ["clean"], // remove formatting button
 ];
 
-export default function TextEditor() {
+const TextEditor = (props) => {
+  let toggle = props.toggle;
+  let setToggle = props.setToggle;
   const { id: documentId } = useParams();
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
@@ -119,7 +122,7 @@ export default function TextEditor() {
 
   return (
     <>
-      <Header>
+      <Header toggle={toggle} setToggle={setToggle}>
         <div className="main">
           <div className="editor">
             <div className="container" ref={wrapperRef}></div>
@@ -128,4 +131,6 @@ export default function TextEditor() {
       </Header>
     </>
   );
-}
+};
+
+export default TextEditor;

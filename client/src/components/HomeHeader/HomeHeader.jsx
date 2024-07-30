@@ -53,9 +53,9 @@ const HomeHeader = ({ children }) => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 absolute top-15 right-0 mx-4 my-2 w-64 h-64 bg-gray-300 rounded-3xl z-10 `}
+            } absolute bg-gray-300  flex justify-center items-center top-15 right-0 w-64 h-64 mx-4 my-2 rounded-3xl  `}
           >
-            <div className="flex flex-col gap-4 bg-slate-50 w-72 rounded-3xl text-center  ">
+            <div className="flex flex-col gap-4 bg-white  rounded-3xl w-60 h-60 text-center  ">
               <div className="font-bold text-xs mt-1">{user?.email}</div>
               <div className="flex justify-center  rounded-2xl ">
                 <img

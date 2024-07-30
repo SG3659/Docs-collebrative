@@ -94,8 +94,7 @@ const signup = () => {
             </span>
           </label>
           <p className="text-white text-center">
-            <span className="text-red-700">*</span>min 8 cha. & contain special
-            Character
+            Password should be between 6-16 characters.
           </p>
           <button
             className="border  p-3 rounded-full  text-white hover:opacity-95

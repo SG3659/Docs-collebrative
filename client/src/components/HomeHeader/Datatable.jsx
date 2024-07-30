@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import { setDocs } from "../../redux/docsSlice";
+import { useSelector, useDispatch } from "react-redux";
 const Datatable = () => {
-  const [docs, setDocs] = useState();
+  const { docs } = useSelector((state) => state.docs);
+  const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
   const getData = async () => {
@@ -19,8 +21,7 @@ const Datatable = () => {
         }
       );
       if (response.data.success) {
-        setDocs(response.data.data);
-        //   console.log(response.data.data);
+        dispatch(setDocs(response.data.data));
       }
     } catch (error) {
       console.log(error);
@@ -43,7 +44,7 @@ const Datatable = () => {
               <p className="text-xs">{row.createdAt}</p>
             </div>
           ))
-        : "CREATE NEW DATA"}
+        : "Loading..."}
     </div>
   );
 };
