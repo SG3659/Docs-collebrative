@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { MdHistory } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
-
+import moment from "moment";
 const header = ({ children, setToggle, toggle }) => {
   const { docs } = useSelector((state) => state.docs);
   const { user } = useSelector((state) => state.user);
@@ -59,11 +59,22 @@ const header = ({ children, setToggle, toggle }) => {
               <div
                 className={`${
                   !toggle ? "hidden" : "flex"
-                } absolute bg-gray-300  flex justify-center items-center top-15 right-8 w-64 h-64 mx-4 my-2 rounded-3xl  `}
+                } absolute bg-gray-300  flex justify-center items-center top-15 right-8 w-64 h-64 mx-4 my-2 rounded-3xl mt-4`}
               >
                 <div className="bg-white rounded-3xl w-60 h-60 text-center">
-                  <p>Last Update</p>
-                  <p>{docs?.updatedAt}</p>
+                  <ul className="mt-6">
+                    <li>
+                      <b>Last Update</b>
+                    </li>
+                    <li>
+                      <span className="font-bold font-medium">Date:</span>
+                      {moment(docs?.updatedAt).format("MMMM Do YYYY")}
+                    </li>
+                    <li>
+                      <span className="font-bold font-medium">Time:</span>
+                      {moment(docs?.updatedAt).format(" h:mm:ss a")}
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
