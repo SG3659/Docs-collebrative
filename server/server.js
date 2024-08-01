@@ -7,12 +7,14 @@ const cookieparser = require("cookie-parser");
 const { Server } = require("socket.io");
 const path = require("path");
 const cors = require("cors");
-
+const path = require("path");
 const Document = require("./Model/Document");
 require("dotenv").config();
 require("./config/data").connect();
 const userauth = require("./routes/authRoute");
 const docsauth = require("./routes/docsRoute");
+
+const __dirname = path.resolve();
 app.use(express.json());
 
 app.use(
@@ -59,6 +61,11 @@ async function findOrCreateDocument(id) {
 app.use(cookieparser());
 app.use("/api/auth", userauth);
 app.use("/api/docs", docsauth);
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 server.listen(port, (req, res) => {
   console.log(`server running at http://localhost:${port}`);
