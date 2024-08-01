@@ -36,6 +36,8 @@ const Datatable = () => {
       <h1>
         <b>Recent Documents</b>
       </h1>
+            
+
       <div className="w-[999px] flex flex-wrap justify-center gap-4 p-6 from-bg-gray-50 to-bg-gray-300 b rounded-2xl mt-2">
         {docs && docs.length > 0
           ? docs.map((row, rowIndex) => (

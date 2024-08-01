@@ -1,18 +1,19 @@
-import { useState } from "react";
-import TextEditor from "./components/TextEditor/TextEditor";
+import { lazy, useState } from "react";
 import { Routes, Navigate, Route } from "react-router-dom";
 import { v4 as uuidV4 } from "uuid";
-import Home from "../src/pages/home";
-import Login from "./pages/login";
-import Signup from "./pages/signup";
+import Spinner from "./components/Spinner/Spinner";
 import PublicRoute from "./components/PRoutes/publicRoutes";
 import PrivateRoute from "./components/PRoutes/protectedRoute";
 import { useSelector } from "react-redux";
-import Spinner from "./components/Spinner/Spinner";
-import ForgotPassword from "./pages/ForgotPassword";
-import PasswordResetSuccess from "./pages/PasswordResetSuccess";
-import EmailSent from "./pages/EmailSent";
-import UpdatePassword from "./pages/UpdatePassword";
+
+const Home = lazy(() => import("../src/pages/home"));
+const Login = lazy(() => import("./pages/login"));
+const Signup = lazy(() => import("./pages/signup"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
+const PasswordResetSuccess = lazy(() => import("./pages/PasswordResetSuccess"));
+const EmailSent = lazy(() => import("./pages/EmailSent"));
+const UpdatePassword = lazy(() => import("./pages/UpdatePassword"));
+const TextEditor = lazy(() => import("./components/TextEditor/TextEditor"));
 
 function App() {
   const { loading } = useSelector((state) => state.loader);
