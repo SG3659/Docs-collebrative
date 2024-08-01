@@ -16,6 +16,7 @@ Developed a MERN Stack Docs collebrative application using Socket.io. The Docs a
     -> Power Point. Excel, Form
     -> AI chatbot
  ## Description:
-    -> Authentication System Development: Created a robust authentication system using JWT tokens, integrating Regex for password Strong. Additionally, Implemented features to efficiently Forgot-Password user credentials efficiently.
+    -> Authentication System Development: Created a robust authentication system using JWT tokens, integrating Regex for password Strong. 
+    -> Additionally, Implemented features to efficiently Forgot-Password user credentials efficiently.
     -> Implement a Middleware to limit block brute force attacks using express-rate-limit, Additionally incoporated password hassing for secure.
     -> Used Redux Toolkit for efficient global state management, improving overall Web performance. 
