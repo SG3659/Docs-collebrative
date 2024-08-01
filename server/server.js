@@ -7,7 +7,6 @@ const cookieparser = require("cookie-parser");
 const { Server } = require("socket.io");
 const path = require("path");
 const cors = require("cors");
-const path = require("path");
 const Document = require("./Model/Document");
 require("dotenv").config();
 require("./config/data").connect();
