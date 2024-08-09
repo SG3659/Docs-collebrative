@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -10,23 +10,32 @@ const Datatable = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
+  const controller = new AbortController();
+  const signal = controller.signal;
   const getData = async () => {
     try {
-      const response = await axios.get(
-        "/api/docs/getAllDocs",
-        { userId: params.id },
-        {
-          headers: {
-            Authorization: " Bearer" + localStorage.getItem("token"),
-          },
-        }
-      );
+      const response = await axios.get("/api/docs/getAllDocs", {
+        params: {
+          userId: params.id,
+        },
+        signal: signal,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       if (response.data.success) {
+        // console.log(response.data.data);
         dispatch(setDocs(response.data.data));
       }
     } catch (error) {
-      console.log(error);
+      if (axios.isCancel(error)) {
+        console.log("Request Canceled", error.message);
+      } else {
+        console.error("Request failed", error);
+      }
     }
+
+    controller.abort();
   };
   useEffect(() => {
     getData();
@@ -36,7 +45,6 @@ const Datatable = () => {
       <h1>
         <b>Recent Documents</b>
       </h1>
-            
 
       <div className="w-[999px] flex flex-wrap justify-center gap-4 p-6 from-bg-gray-50 to-bg-gray-300 b rounded-2xl mt-2">
         {docs && docs.length > 0
