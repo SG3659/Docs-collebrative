@@ -2,30 +2,46 @@ import { useEffect } from "react";
 import Header from "../components/HomeHeader/HomeHeader";
 import Card from "../components/Card/Card";
 import DataTable from "../components/HomeHeader/Datatable";
-// import { useParams } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { setUser } from "../redux/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { showLoading, hideLoading } from "../redux/loaderSlice";
+// import { useParams } from "react-router-dom";
 const home = () => {
-  // const getdata = async () => {
-  //   try {
-  //     //  give a response
-  //     const response = await axios.get(
-  //       "/api/docs/getAllDocs",
-  //       { userId: params.id },
-  //       {
-  //         headers: {
-  //           Authorization: "Bearer " + localStorage.getItem("token"),
-  //         },
-  //       }
-  //     );
-  //     // console.log(response.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getdata();
-  // }, []);
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const getUser = async () => {
+    try {
+      dispatch(showLoading());
+      const response = await axios.post(
+        "/api/auth/get-user-info-by-id",
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      dispatch(hideLoading());
+      if (response.data.success) {
+        dispatch(setUser(response.data.data));
+      } else {
+        localStorage.clear();
+        navigate("/login");
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      localStorage.clear();
+      navigate("/login");
+    }
+  };
+  useEffect(() => {
+    if (!user) {
+      getUser();
+    }
+  }, [user]);
   return (
     <>
       <Header>

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { showLoading, hideLoading } from "../redux/loaderSlice";
+import { signInFailure, signInSuccess } from "../redux/loginSlice";
 import { useDispatch } from "react-redux";
 const login = () => {
   const navigate = useNavigate();
@@ -23,23 +24,20 @@ const login = () => {
     e.preventDefault();
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "/api/auth/login",
-        JSON.stringify(formData),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post("/api/auth/login", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       dispatch(hideLoading());
       if (response.data.success) {
         // console.log(response.data);
         localStorage.setItem("token", response.data.data);
-        toast.success(response.data.message);
+        dispatch(signInSuccess(response.data.message));
         navigate("/");
       } else {
         toast.error(response.data.message);
+        dispatch(signInFailure(response.data.message));
       }
     } catch (error) {
       dispatch(hideLoading());
@@ -48,7 +46,7 @@ const login = () => {
   };
   return (
     <div className="from-gray-50 to-blue-500 bg-gradient-to-r h-screen flex justify-center items-center">
-      <div >
+      <div>
         <img
           className="w-96 rounded-full shadow-2xl"
           src="https://static.vecteezy.com/system/resources/previews/013/939/288/non_2x/online-account-registration-and-login-concept-woman-who-registers-or-logs-in-to-an-online-account-with-a-user-interface-secure-login-and-password-flat-illustration-vector.jpg"

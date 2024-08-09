@@ -13,7 +13,7 @@ require("./config/data").connect();
 const userauth = require("./routes/authRoute");
 const docsauth = require("./routes/docsRoute");
 
-const __dirname = path.resolve();
+const _dirname = path.resolve();
 app.use(express.json());
 
 app.use(
