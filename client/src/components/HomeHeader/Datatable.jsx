@@ -2,12 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { setDocs } from "../../redux/docsSlice";
-import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 const Datatable = () => {
-  const { docs } = useSelector((state) => state.docs);
-  const dispatch = useDispatch();
+  const [docs, setDocs] = useState("");
   const params = useParams();
   const navigate = useNavigate();
   const controller = new AbortController();
@@ -25,7 +22,7 @@ const Datatable = () => {
       });
       if (response.data.success) {
         // console.log(response.data.data);
-        dispatch(setDocs(response.data.data));
+        setDocs(response.data.data);
       }
     } catch (error) {
       if (axios.isCancel(error)) {
