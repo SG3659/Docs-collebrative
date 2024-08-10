@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { CiLogout } from "react-icons/ci";
 const header = ({ children, setToggle, toggle }) => {
   const { user } = useSelector((state) => state.user);
-  const [toggles, setToggles] = useState(false);
   const navigate = useNavigate();
   return (
     <>
