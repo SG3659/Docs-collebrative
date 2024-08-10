@@ -95,12 +95,27 @@ const Login = async (req, res) => {
       });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({
+    return res.json({
       success: false,
       message: "User cannot be Login, please try again later",
     });
   }
 };
+// const LogOut = async (req, res) => {
+//   try {
+//     res.clearCookie("access_token");
+//     res.json({
+//       success: true,
+//       message: "User LogOut",
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     return res.json({
+//       success: false,
+//       message: "User cannot be logout ",
+//     });
+//   }
+// };
 const UserData = async (req, res) => {
   const user = await User.findOne({ _id: req.body.userId });
   user.password = undefined;
@@ -357,4 +372,10 @@ const UpdatePassword = async (req, res) => {
       });
     });
 };
-module.exports = { CreateUser, Login, UserData, ResetPassword, UpdatePassword };
+module.exports = {
+  CreateUser,
+  Login,
+  UserData,
+  ResetPassword,
+  UpdatePassword,
+};

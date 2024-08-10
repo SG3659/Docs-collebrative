@@ -23,15 +23,11 @@ const signup = () => {
     e.preventDefault();
     try {
       dispatch(showLoading());
-      const response = await axios.post(
-        "/api/auth/register",
-        JSON.stringify(formData),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post("/api/auth/register", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       dispatch(hideLoading());
       if (response.data.success) {
         toast.success(response.data.message);
