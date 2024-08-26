@@ -1,8 +1,5 @@
 const { Schema, model } = require("mongoose");
-const bcrypt = require("bcryptjs");
 const validator = require("validator");
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
 const userSchema = new Schema(
   {
     username: {
@@ -37,52 +34,9 @@ const userSchema = new Schema(
       type: String,
       default: "./image/user.png",
     },
-    loginCount: {
-      type: Number,
-      default: 0,
-    },
   },
   {
     timestamps: true,
   }
 );
-// Hash password before saving to database
-userSchema.pre("save", async function (next) {
-  const user = this;
-  if (user.isModified("password") || user.isNew) {
-    const salt = await bcrypt.genSalt(16);
-    const hashpass = await bcrypt.hash(user.password, salt);
-    user.password = hashpass;
-    next();
-  } else {
-    return next();
-  }
-});
-// compare password with hashed password in database
-
-userSchema.methods.comparePassword = function (password) {
-  return bcrypt.compare(password, this.password);
-};
-// Increment login count when user logs in
-userSchema.methods.incrementLoginCount = function () {
-  this.loginCount += 1;
-  return this.save();
-};
-// Generate JWT token
-userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, process.env.JWT_PASSWORD, {
-    expiresIn: "1d",
-  });
-  return token;
-};
-
-userSchema.statics.findByToken = function (token) {
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_PASSWORD);
-    return this.findOne({ _id: decoded._id });
-  } catch (err) {
-    throw new Error(`Error verifying token: ${err.message}`);
-  }
-};
-
 module.exports = model("User", userSchema);

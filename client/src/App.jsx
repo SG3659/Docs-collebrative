@@ -2,7 +2,6 @@ import { lazy, useState } from "react";
 import { Routes, Navigate, Route } from "react-router-dom";
 import { v4 as uuidV4 } from "uuid";
 import Spinner from "./components/Spinner/Spinner";
-import PublicRoute from "./components/PRoutes/publicRoutes";
 import PrivateRoute from "./components/PRoutes/protectedRoute";
 import { useSelector } from "react-redux";
 
@@ -20,7 +19,7 @@ function App() {
   const [toggle, setToggle] = useState(false);
   return (
     <div className="relative z-0 ">
-      <div className="absolute">{loading && <Spinner />}</div>
+      {/* <div className="absolute">{loading && <Spinner />}</div> */}
       <Routes>
         <Route
           path="/"
@@ -30,54 +29,18 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route
-          path="/login"
-          element={
-            <PublicRoute>
-              <Login />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/Signup"
-          element={
-            <PublicRoute>
-              <Signup />
-            </PublicRoute>
-          }
-        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
         <Route
           path="/password-reset-success"
-          element={
-            <PublicRoute>
-              <PasswordResetSuccess />
-            </PublicRoute>
-          }
+          element={<PasswordResetSuccess />}
         />
-        <Route
-          path="/email-sent"
-          element={
-            <PublicRoute>
-              <EmailSent />
-            </PublicRoute>
-          }
-        />
+        <Route path="/email-sent" element={<EmailSent />} />
         <Route
           path="/reset-password/:userId/:resetString"
-          element={
-            <PublicRoute>
-              <UpdatePassword />
-            </PublicRoute>
-          }
+          element={<UpdatePassword />}
         />
-        <Route
-          path="/forgot-password"
-          element={
-            <PublicRoute>
-              <ForgotPassword />
-            </PublicRoute>
-          }
-        />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/">
           <Route
             path="docs"

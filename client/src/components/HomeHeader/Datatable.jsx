@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
-const DataTable = ({ doc }) => {
+export const DataTable = ({ doc }) => {
   const navigate = useNavigate();
   return (
     <div>
@@ -19,7 +19,7 @@ const DataTable = ({ doc }) => {
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
-              <TableRow >
+              <TableRow>
                 <TableCell>NAME</TableCell>
                 <TableCell align="right">DATE</TableCell>
               </TableRow>
@@ -50,5 +50,3 @@ const DataTable = ({ doc }) => {
     </div>
   );
 };
-
-export default DataTable;

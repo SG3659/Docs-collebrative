@@ -2,6 +2,7 @@ const User = require("../Model/userModel");
 const PasswordReset = require("../Model/passwordResetModel");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 // nodemailer transporter
@@ -42,12 +43,14 @@ const CreateUser = async (req, res) => {
         message: "Email Exists",
       });
     }
-
+    const salt = await bcrypt.genSalt(16);
+    const hashPassword = await bcrypt.hash(password, salt);
     const user = await User.create({
       username,
       email,
-      password,
+      password: hashPassword,
     });
+    await user.save();
     // console.log(user);
     return res.json({
       success: true,
@@ -62,15 +65,16 @@ const CreateUser = async (req, res) => {
   }
 };
 const Login = async (req, res) => {
+  const{email,password}=req.body;
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email});
     if (!user) {
       return res.json({
         success: false,
         message: "Invalid Email",
       });
     }
-    const isMatch = await user.comparePassword(req.body.password);
+    const isMatch = await bcrypt.compare(password,user.password) ;
     if (!isMatch) {
       return res.json({
         success: false,
@@ -78,8 +82,9 @@ const Login = async (req, res) => {
       });
     }
 
-    const token = user.generateAuthToken();
-    await user.incrementLoginCount();
+    const token = jwt.sign({ _id: this._id }, process.env.JWT_PASSWORD, {
+      expiresIn: "1d",
+    });;
     const { password: pass, ...rest } = user._doc;
     res
       .cookie("access_token", token, {
@@ -87,12 +92,9 @@ const Login = async (req, res) => {
         sameSite: "strict",
         secure: false,
       })
-      .json({
-        success: true,
-        message: "Login Success",
-        data: token,
-        ...rest,
-      });
+      .json(rest);
+  
+      
   } catch (error) {
     console.error(error);
     return res.json({

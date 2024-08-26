@@ -2,17 +2,15 @@ import { useEffect, useState } from "react";
 import Header from "../components/HomeHeader/HomeHeader";
 import Card from "../components/Card/Card";
 import DataCard from "../components/HomeHeader/DataCard";
-import DataTable from "../components/HomeHeader/DataTable";
+import { DataTable } from "../components/HomeHeader/Datatable";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { setUser } from "../redux/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/loaderSlice";
 import { FaTableList } from "react-icons/fa6";
 import { FaTableCells } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
 const home = () => {
-  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showData, setShowData] = useState(false);
@@ -28,9 +26,6 @@ const home = () => {
           userId: params.id,
         },
         signal: signal,
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
       });
       if (response.data.success) {
         // console.log(response.data.data);
@@ -46,37 +41,27 @@ const home = () => {
 
     controller.abort();
   };
-  const getUser = async () => {
-    try {
-      dispatch(showLoading());
-      const response = await axios.post(
-        "/api/auth/get-user-info-by-id",
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
-      dispatch(hideLoading());
-      if (response.data.success) {
-        dispatch(setUser(response.data.data));
-      } else {
-        localStorage.clear();
-        navigate("/login");
-      }
-    } catch (error) {
-      dispatch(hideLoading());
-      localStorage.clear();
-      navigate("/login");
-    }
-  };
+  // const getUser = async () => {
+  //   try {
+  //     dispatch(showLoading());
+  //     const response = await axios.post(
+  //       "/api/auth/get-user-info-by-id");
+  //     dispatch(hideLoading());
+  //     if (response.data.success) {
+  //       dispatch(setUser(response.data.data));
+  //     } else {
+  //       localStorage.clear();
+  //       navigate("/login");
+  //     }
+  //   } catch (error) {
+  //     dispatch(hideLoading());
+  //     localStorage.clear();
+  //     navigate("/login");
+  //   }
+  // };
   useEffect(() => {
-    if (!user) {
-      getUser();
-    }
     getData();
-  }, [user]);
+  },[]);
   return (
     <>
       <Header>

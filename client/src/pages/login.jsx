@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { showLoading, hideLoading } from "../redux/loaderSlice";
 import { signInFailure, signInSuccess } from "../redux/loginSlice";
 import { useDispatch } from "react-redux";
+
 const login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,23 +22,40 @@ const login = () => {
   }
   const submitHandler = async (e) => {
     e.preventDefault();
+    // try {
+    //   dispatch(showLoading());
+    //   const response = await axios.post("/api/auth/login", formData, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+    //   dispatch(hideLoading());
+    //   if (response.data.success) {
+    //     // console.log(response.data);
+    //     dispatch(signInSuccess(response.data.data));
+    //     navigate("/");
+    //   } else {
+    //     toast.error(response.data.message);
+    //     dispatch(signInFailure(response.data.message));
+    //   }
+    // }
     try {
       dispatch(showLoading());
-      const response = await axios.post("/api/auth/login", formData, {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(formData),
       });
-      dispatch(hideLoading());
-      if (response.data.success) {
-        // console.log(response.data);
-        localStorage.setItem("token", response.data.data);
-        dispatch(signInSuccess(response.data.message));
-        navigate("/");
-      } else {
-        toast.error(response.data.message);
-        dispatch(signInFailure(response.data.message));
+      const data = await res.json();
+      if (data.success === false) {
+        toast.error(data.message);
+        dispatch(signInFailure(data.message));
+        return;
       }
+      dispatch(signInSuccess(data));
+      navigate("/");
     } catch (error) {
       dispatch(hideLoading());
       console.error("something went wrong ", error);
