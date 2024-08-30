@@ -1,6 +1,12 @@
-const { Schema, model } = require("mongoose");
-const validator = require("validator");
-const userSchema = new Schema(
+import { Schema, model,Document } from "mongoose";
+import validator from "validator"
+export interface IUser extends Document{
+   username:string,
+   email:string,
+   password:string,
+   profileImageURL:string,
+}
+const userSchema:Schema<IUser> = new Schema(
   {
     username: {
       type: String,
@@ -21,7 +27,7 @@ const userSchema = new Schema(
       minlength: [8, "Password must be at least 8 character long"],
       maxlength: [128, "Password must be less than 128 character long"],
       validate: {
-        validator: function (value) {
+        validator: function (value:string):boolean {
           const regex =
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+={}[\]\\|:;'<>,.?/])[a-zA-Z\d!@#$%^&*()_\-+={}[\]\\|:;'<>,.?/]{8,}$/;
           return regex.test(value);
@@ -39,4 +45,5 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
-module.exports = model("User", userSchema);
+const User =model<IUser>("User",userSchema)
+export default User 

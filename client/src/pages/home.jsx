@@ -10,6 +10,7 @@ import { showLoading, hideLoading } from "../redux/loaderSlice";
 import { FaTableList } from "react-icons/fa6";
 import { FaTableCells } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
+
 const home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -61,7 +62,7 @@ const home = () => {
   // };
   useEffect(() => {
     getData();
-  },[]);
+  }, []);
   return (
     <>
       <Header>

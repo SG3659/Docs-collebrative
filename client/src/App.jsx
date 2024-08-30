@@ -20,6 +20,7 @@ function App() {
   return (
     <div className="relative z-0 ">
       {/* <div className="absolute">{loading && <Spinner />}</div> */}
+      
       <Routes>
         <Route
           path="/"
