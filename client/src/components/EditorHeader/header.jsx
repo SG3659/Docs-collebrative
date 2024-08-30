@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CiLogout } from "react-icons/ci";
+import EditName from "./EditName";
 const header = ({ children, setToggle, toggle }) => {
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -39,9 +40,7 @@ const header = ({ children, setToggle, toggle }) => {
           <div className=" flex flex-col">
             <h1 className="font-light text-lg font-google ">Docs</h1>
             <ul className="flex gap-1 text-sm ">
-              <li>File</li>
-              <li>Insert</li>
-              <li>View</li>
+              <li>Edit-Name</li>
             </ul>
           </div>
         </div>
@@ -88,6 +87,7 @@ const header = ({ children, setToggle, toggle }) => {
           </div>
         </div>
       </nav>
+      {/* <EditName /> */}
       <div>{children}</div>
     </>
   );
