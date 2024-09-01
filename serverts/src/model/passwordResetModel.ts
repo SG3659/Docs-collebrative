@@ -1,6 +1,5 @@
 import { Schema, model, Document } from "mongoose";
 
-// Interface for the Password Reset document
 export interface IResetPass extends Document {
   userId: string;
   resetString: string;
