@@ -12,7 +12,6 @@ const userDocument =new Schema({
    },
    name: {
      type: String,
-     default: "Untitled Document",
    },
    data: {
      type: Object,

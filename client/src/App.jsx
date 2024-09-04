@@ -1,6 +1,5 @@
 import { lazy, useState } from "react";
-import { Routes, Navigate, Route } from "react-router-dom";
-import { v4 as uuidV4 } from "uuid";
+import { Routes, Route } from "react-router-dom";
 import Spinner from "./components/Spinner/Spinner";
 import PrivateRoute from "./components/PRoutes/protectedRoute";
 import { useSelector } from "react-redux";
@@ -20,13 +19,13 @@ function App() {
   return (
     <div className="relative z-0 ">
       {/* <div className="absolute">{loading && <Spinner />}</div> */}
-      
+
       <Routes>
         <Route
           path="/"
           element={
             <PrivateRoute>
-              <Home />
+              <Home/>
             </PrivateRoute>
           }
         />
@@ -42,20 +41,15 @@ function App() {
           element={<UpdatePassword />}
         />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/">
-          <Route
-            path="docs"
-            element={<Navigate to={`/document/${uuidV4()}`} />}
-          />
-          <Route
-            path="document/:id"
-            element={
-              <PrivateRoute>
-                <TextEditor toggle={toggle} setToggle={setToggle} />
-              </PrivateRoute>
-            }
-          />
-        </Route>
+
+        <Route
+          path="/document/:id"
+          element={
+            <PrivateRoute>
+              <TextEditor toggle={toggle} setToggle={setToggle} />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );

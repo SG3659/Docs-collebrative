@@ -1,7 +1,21 @@
 import { Request, Response } from "express";
 import Document from "../model/document"; 
 
-export const getAllDocs = async (req: Request, res: Response): Promise<Response> => {
+
+
+const defaultData = "";
+ const findOrCreateDocument = async({ id,documentName }: { id: string, documentName:string }) => {
+ if(id == null ) return ;
+ const document= await Document.findById(id);
+  if(document) return document;
+  const newDocument= await Document.create({_id: id,  name: documentName, data: defaultData})
+  await newDocument.save();
+  return newDocument;
+}
+
+
+
+ const getAllDocs = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { userId } = req.body;
 
@@ -23,4 +37,6 @@ export const getAllDocs = async (req: Request, res: Response): Promise<Response>
     });
   }
 };
-export default getAllDocs;
+
+
+export { getAllDocs ,findOrCreateDocument};
