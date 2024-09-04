@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CiLogout } from "react-icons/ci";
-import EditName from "./EditName";
+
 const header = ({ children, setToggle, toggle }) => {
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -87,7 +87,6 @@ const header = ({ children, setToggle, toggle }) => {
           </div>
         </div>
       </nav>
-      {/* <EditName /> */}
       <div>{children}</div>
     </>
   );
