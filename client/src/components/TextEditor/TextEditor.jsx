@@ -61,7 +61,7 @@ const TextEditor = (props) => {
 
   //socket connection
   useEffect(() => {
-    const s = io("http://localhost:5000");
+    const s = io(import.meta.env.VITE_SERVER_URL);
     setSocket(s);
     return () => {
       s.disconnect();

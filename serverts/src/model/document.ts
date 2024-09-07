@@ -12,6 +12,8 @@ const userDocument =new Schema({
    },
    name: {
      type: String,
+     require: true,
+     default:'Untitled Document'
    },
    data: {
      type: Object,

@@ -15,21 +15,24 @@ const home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showData, setShowData] = useState(false);
-
+  const [search, setSearch] = useState(" ");
   const [docs, setDocs] = useState("");
   const params = useParams();
   const controller = new AbortController();
   const signal = controller.signal;
   const getData = async () => {
     try {
-      const response = await axios.get("/api/docs/getAllDocs", {
-        params: {
-          userId: params.id,
-        },
-        signal: signal,
-      });
+      const response = await axios.get(
+        "/api/docs/getAllDocs?search=" + { search },
+        {
+          params: {
+            userId: params.id,
+          },
+          signal: signal,
+        }
+      );
       if (response.data.success) {
-        // console.log(response.data.data);
+        console.log(response.data.data);
         setDocs(response.data.data);
       }
     } catch (error) {
@@ -62,7 +65,7 @@ const home = () => {
   // };
   useEffect(() => {
     getData();
-  }, []);
+  }, [search]);
   return (
     <>
       <Header>
@@ -74,18 +77,32 @@ const home = () => {
           </div>
           <Card />
         </div>
-        <div className=" bg-gray-50 mt-10 p-3 flex justify-center rounded-2xl shadow-2xl relative ">
-          {showData ? <DataCard doc={docs} /> : <DataTable doc={docs} />}
-          <span
-            className="absolute cursor-pointer"
-            onClick={() => setShowData((prev) => !prev)}
-          >
-            {showData ? (
-              <FaTableList fontSize={20} />
-            ) : (
-              <FaTableCells fontSize={20} />
-            )}
-          </span>
+
+        <div className=" bg-gray-50 mt-10 p-3 rounded-2xl shadow-2xl flex flex-col items-center ">
+          <div className="flex items-center justify-evenly gap-10">
+            <p className=" w-fit font-google font">Recent Document </p>
+            <input
+              type="text"
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="h-9 border p-3 rounded-full focus:outline-none shadow-lg "
+            />
+          </div>
+
+          <div>
+            {showData ? <DataCard doc={docs} /> : <DataTable doc={docs} />}
+            <span
+              className=" absolute cursor-pointer "
+              onClick={() => setShowData((prev) => !prev)}
+            >
+              {showData ? (
+                <FaTableList fontSize={20} />
+              ) : (
+                <FaTableCells fontSize={20} />
+              )}
+            </span>
+          </div>
         </div>
       </Header>
     </>

@@ -4,11 +4,11 @@ import Document from "../model/document";
 
 
 const defaultData = "";
- const findOrCreateDocument = async({ id,documentName }: { id: string, documentName:string }) => {
+ const findOrCreateDocument = async({ id,name }: { id: string, name:string }) => {
  if(id == null ) return ;
  const document= await Document.findById(id);
   if(document) return document;
-  const newDocument= await Document.create({_id: id,  name: documentName, data: defaultData})
+  const newDocument= await Document.create({_id: id,  name: name, data: defaultData})
   await newDocument.save();
   return newDocument;
 }
@@ -17,16 +17,19 @@ const defaultData = "";
 
  const getAllDocs = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const { userId } = req.body;
+    const { userId } = req.body
+        const Docs = await Document.find({ userId });
 
-    // Retrieve documents associated with the user
-    const Docs = await Document.find({ userId });
+    // If there is a search query, filter documents by name
+    const filterDocs = req.query.search 
+      ? Docs.filter((item: { name: string }) => item.name.includes(req.query.search as string))
+      : Docs;
 
     // Send successful response with documents
-    return res.json({
-      success: true,
-      data: Docs,
-    });
+      return res.json({
+        success: true,
+        data: filterDocs,
+      });    
   } catch (error) {
     console.error("Error fetching documents:", error);
 
