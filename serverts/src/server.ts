@@ -31,7 +31,7 @@ io.on("connection", (socket) => {
 
   socket.on("get-document", async (documentId:string, documentName:string) => {
     socket.join(documentId);
-    const document = await findOrCreateDocument({id:documentId,documentName:documentName});
+    const document = await findOrCreateDocument({id:documentId,name:documentName});
    
     socket.emit("load-document", document?.data);
     socket.on("send-change", (delta) => {
