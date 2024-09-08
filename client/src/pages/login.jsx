@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { showLoading, hideLoading } from "../redux/loaderSlice";
 import { signInFailure, signInSuccess } from "../redux/loginSlice";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const login = () => {
   const navigate = useNavigate();
@@ -22,39 +23,19 @@ const login = () => {
   }
   const submitHandler = async (e) => {
     e.preventDefault();
-    // try {
-    //   dispatch(showLoading());
-    //   const response = await axios.post("/api/auth/login", formData, {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   });
-    //   dispatch(hideLoading());
-    //   if (response.data.success) {
-    //     // console.log(response.data);
-    //     dispatch(signInSuccess(response.data.data));
-    //     navigate("/");
-    //   } else {
-    //     toast.error(response.data.message);
-    //     dispatch(signInFailure(response.data.message));
-    //   }
-    // }
     try {
       dispatch(showLoading());
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
+      const res = await axios.post("/api/auth/login", formData, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
       });
-      const data = await res.json();
-      if (data.success === false) {
-        toast.error(data.message);
-        dispatch(signInFailure(data.message));
+      if (res.data.success === false) {
+        toast.error(res.data.message);
+        dispatch(signInFailure(res.data.message));
         return;
       }
-      dispatch(signInSuccess(data));
+      dispatch(signInSuccess(res.data.data));
       navigate("/");
     } catch (error) {
       dispatch(hideLoading());

@@ -23,7 +23,7 @@ const home = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        "/api/docs/getAllDocs?search=" + { search },
+        "/api/docs/getAllDocs?search=" + search,
         {
           params: {
             userId: params.id,
@@ -32,7 +32,7 @@ const home = () => {
         }
       );
       if (response.data.success) {
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setDocs(response.data.data);
       }
     } catch (error) {
@@ -78,7 +78,7 @@ const home = () => {
           <Card />
         </div>
 
-        <div className=" bg-gray-50 mt-10 p-3 rounded-2xl shadow-2xl flex flex-col items-center ">
+        <div className=" bg-gray-50 mt-10 p-3 rounded-2xl shadow-2xl flex flex-col items-center  ">
           <div className="flex items-center justify-evenly gap-10">
             <p className=" w-fit font-google font">Recent Document </p>
             <input
@@ -88,12 +88,8 @@ const home = () => {
               onChange={(e) => setSearch(e.target.value)}
               className="h-9 border p-3 rounded-full focus:outline-none shadow-lg "
             />
-          </div>
-
-          <div>
-            {showData ? <DataCard doc={docs} /> : <DataTable doc={docs} />}
-            <span
-              className=" absolute cursor-pointer "
+            <div
+              className="  cursor-pointer top-0"
               onClick={() => setShowData((prev) => !prev)}
             >
               {showData ? (
@@ -101,7 +97,13 @@ const home = () => {
               ) : (
                 <FaTableCells fontSize={20} />
               )}
-            </span>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              {showData ? <DataCard doc={docs} /> : <DataTable doc={docs} />}
+            </div>
           </div>
         </div>
       </Header>
