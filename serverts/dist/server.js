@@ -22,14 +22,16 @@ const authRoute_1 = __importDefault(require("./routes/authRoute"));
 const docsRoute_1 = __importDefault(require("./routes/docsRoute"));
 const docsController_1 = require("./controller/docsController");
 const document_1 = __importDefault(require("./model/document"));
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 (0, data_1.default)();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 5000;
 const server = (0, http_1.createServer)(app);
+app.use((0, cors_1.default)());
 const io = new socket_io_1.Server(server, {
     cors: {
-        origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+        origin: process.env.CLIENT_ORIGIN,
         methods: ["GET", "POST"],
     },
 });
