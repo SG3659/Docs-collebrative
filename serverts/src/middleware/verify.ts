@@ -1,15 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
-// Define the custom request interface to include userId
-interface CustomRequest extends Request {
-  body: {
-    userId?: string; // Making userId optional to handle the case where it's not present initially
-    [key: string]: any; // Allow other keys to avoid TypeScript errors
-  };
-}
 
- const verify  = async (req: CustomRequest, res: Response, next: NextFunction) => {
+ const verify  = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // Retrieve the token from request headers
     const token  = req.cookies['access_token'];
