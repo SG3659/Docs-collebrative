@@ -2,10 +2,28 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CiLogout } from "react-icons/ci";
-
+import { MdOutlineDelete, MdTry } from "react-icons/md";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 const header = ({ children, setToggle, toggle }) => {
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const params = useParams();
+
+  const deleteHandler = async () => {
+    try {
+      const response = await axios.delete("/api/docs/delete", {
+        params: {
+          _id: params._id,
+        },
+      });
+      if (response.data.sucess) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Something went wrong", error);
+    }
+  };
   return (
     <>
       <nav className=" flex justify-between items-center w-full z-20 fixed top-0  bg-white gap-1 shadow-2xl">
@@ -40,7 +58,9 @@ const header = ({ children, setToggle, toggle }) => {
           <div className=" flex flex-col">
             <h1 className="font-light text-lg font-google ">Docs</h1>
             <ul className="flex gap-1 text-sm ">
-              <li>Edit-Name</li>
+              <li onClick={deleteHandler}>
+                <MdOutlineDelete fontSize={20} />
+              </li>
             </ul>
           </div>
         </div>

@@ -18,14 +18,14 @@ function App() {
   const [toggle, setToggle] = useState(false);
   return (
     <div className="relative z-0 ">
-      {/* <div className="absolute">{loading && <Spinner />}</div> */}
+      <div className="absolute">{loading && <Spinner />}</div>
 
       <Routes>
         <Route
           path="/"
           element={
             <PrivateRoute>
-              <Home/>
+              <Home />
             </PrivateRoute>
           }
         />
