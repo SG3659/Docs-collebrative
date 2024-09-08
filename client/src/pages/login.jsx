@@ -30,6 +30,7 @@ const login = () => {
           "Content-Type": "application/json",
         },
       });
+      dispatch(hideLoading());
       if (res.data.success === false) {
         toast.error(res.data.message);
         dispatch(signInFailure(res.data.message));

@@ -3,17 +3,12 @@ import Header from "../components/HomeHeader/HomeHeader";
 import Card from "../components/Card/Card";
 import DataCard from "../components/HomeHeader/DataCard";
 import { DataTable } from "../components/HomeHeader/Datatable";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { showLoading, hideLoading } from "../redux/loaderSlice";
 import { FaTableList } from "react-icons/fa6";
 import { FaTableCells } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
 
 const home = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [showData, setShowData] = useState(false);
   const [search, setSearch] = useState(" ");
   const [docs, setDocs] = useState("");
