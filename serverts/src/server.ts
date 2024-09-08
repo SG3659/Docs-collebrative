@@ -8,6 +8,7 @@ import userauth from "./routes/authRoute";
 import docsauth from "./routes/docsRoute"
 import {  findOrCreateDocument} from"./controller/docsController"
 import Document from"./model/document"
+import cors from "cors"
 dotenv.config();
 connect();
 
@@ -15,7 +16,7 @@ const app = express();
 const port= process.env.PORT || 5000;
 const server = createServer(app);
 
-
+app.use(cors())
 const io = new Server(server, {
   cors: {
     origin: process.env.CLIENT_ORIGIN || "http://localhost:5173" ,
