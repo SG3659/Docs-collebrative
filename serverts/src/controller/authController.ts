@@ -145,7 +145,7 @@ transporter.verify((error, success) => {
 
 const resetPassword = async (req: Request, res: Response) => {
   const { email } = req.body;
-  const redirectUrl = "http://localhost:5173/reset-password";
+  const redirectUrl = "https://docs-collebrative.vercel.app/reset-password";
 
   try {
     const user = await User.findOne({ email });

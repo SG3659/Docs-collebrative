@@ -19,7 +19,7 @@ const server = createServer(app);
 app.use(cors())
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_ORIGIN,
+    origin: 'https://docs-collebrative.vercel.app',
     methods: ["GET", "POST"],
   },
 });
